@@ -1,3 +1,4 @@
+# Conda: renew_project
 from openai import OpenAI
 
 # Initialize client with local LLM settings
