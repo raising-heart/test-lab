@@ -1,0 +1,19 @@
+Chat Session Started: 2024-11-25 00:46:07
+--------------------------------------------------
+
+[2024-11-25 00:46:10] User: Hey there
+--------------------------------------------------
+
+[2024-11-25 00:46:12] Assistant: Hello! How can I assist you today?
+[2024-11-25 00:46:12] Audio saved to: audio_reply/response_20241125_004611.wav
+--------------------------------------------------
+
+[2024-11-25 00:46:32] User: Please tell me who you are?
+--------------------------------------------------
+
+[2024-11-25 00:46:38] Assistant: I am an AI language model created by OpenAI, designed to assist with providing information and answering questions to the best of my ability based on the data I have been trained on. How can I assist you today?
+[2024-11-25 00:46:38] Audio saved to: audio_reply/response_20241125_004634.wav
+--------------------------------------------------
+
+[2024-11-25 00:47:42] System: Chat session ended
+--------------------------------------------------
