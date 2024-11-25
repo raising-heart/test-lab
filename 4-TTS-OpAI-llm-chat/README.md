@@ -35,21 +35,18 @@ This repository contains multiple versions of chat applications that interact wi
 #### Enhanced Versions
 
 ##### chat_app4.py & chat_app4a.py
-- Built upon assistant_1.py
 - Enhanced TTS capabilities
 - Improved error handling
 - Better session management
 - Audio responses saved in `audio_reply` folder
 
 ##### chat_app5.py
-- Based on assistant_2.py
 - Professional assistant persona
 - Enhanced session management
 - Structured conversation layout
 - Improved error feedback
 
 ##### chat_app6.py (Latest Version)
-- Developed from assistant_3.py
 - Modern GUI interface using tkinter
 - Features from all previous versions
 - Minimum window size of 800x600
