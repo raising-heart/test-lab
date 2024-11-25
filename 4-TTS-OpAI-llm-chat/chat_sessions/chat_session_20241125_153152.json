@@ -1,0 +1,15 @@
+{
+  "model": "llama3.2:3b",
+  "temperature": 0.7,
+  "max_tokens": 150,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "It's nice to meet you. Is there something I can help you with today? Do you have a specific question, topic, or problem you'd like assistance with? I'm here to provide information, guidance, and support to the best of my abilities."
+    }
+  ]
+}
