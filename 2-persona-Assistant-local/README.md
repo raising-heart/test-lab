@@ -1,6 +1,6 @@
 # AI Assistant Implementation
 
-This repository contains three different implementations of an AI assistant using the Ollama local LLM service. Each implementation offers different interfaces and features while maintaining the core functionality of an AI assistant.
+This repository contains different implementations of an AI assistant using the Ollama local LLM service. Each implementation offers different interfaces and features while maintaining the core functionality of an AI assistant.
 
 ## Files Description
 
@@ -28,23 +28,50 @@ A graphical user interface (GUI) version of the AI assistant built with Tkinter 
 - Offers a more polished user experience with a modern interface
 - Includes visual feedback for user interactions
 
+### `assistant_4.py`
+A modern web-based implementation of the AI assistant using Flask that:
+- Features a clean, modern web interface
+- Provides real-time chat interactions
+- Includes typing indicators and smooth animations
+- Offers a responsive design that works on all screen sizes
+- Maintains chat history during the session
+- Supports markdown text formatting in messages
+
 ## Setup and Requirements
 
-To run these assistants, you need:
+### Prerequisites
 1. Python 3.x
 2. Ollama running locally on port 11434
-3. The following Python packages:
-   - openai
-   - tkinter (for assistant_3.py)
+
+### Installation
+1. Clone the repository
+2. Install the required packages:
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
 
-Each assistant can be run independently:
+### CLI and GUI Versions
+Run any of the standalone versions:
 ```bash
-python assistant_1.py  # For basic CLI version
-python assistant_2.py  # For enhanced CLI version
-python assistant_3.py  # For GUI version
+python assistant_1.py  # Basic CLI version
+python assistant_2.py  # Enhanced CLI version
+python assistant_3.py  # GUI version
 ```
 
-The assistants connect to a local Ollama instance and use the llama3.2:3b model by default.
+### Web Version (assistant_4)
+To run the web-based version:
+```bash
+python -m flask --app assistant_4.py run
+```
+Then open your browser and navigate to `http://localhost:5000`
 
+## Technical Details
+
+- All assistants use the Ollama API (OpenAI-compatible)
+- Default model: llama3.2:3b
+- Web interface built with Flask and modern CSS
+- Responsive design using Tailwind CSS
+- Real-time message updates and typing indicators
+- Cross-browser compatible
