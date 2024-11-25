@@ -1,3 +1,4 @@
+# Conda: renew_project
 from flask import Flask, render_template, request, jsonify
 from openai import OpenAI
 import json
