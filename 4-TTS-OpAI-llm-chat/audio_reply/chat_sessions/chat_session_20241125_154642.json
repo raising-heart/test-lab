@@ -1,0 +1,37 @@
+{
+  "model": "llama3.2:3b",
+  "temperature": 0.7,
+  "max_tokens": 300,
+  "voice": "nova",
+  "messages": [
+    {
+      "role": "user",
+      "content": "I am your user, and you are my dedicated AI assistant"
+    },
+    {
+      "role": "assistant",
+      "content": "I am here to assist you. I'll provide expert guidance while maintaining professionalism and accuracy in our interactions. How may I help you today?"
+    },
+    {
+      "role": "user",
+      "content": "Hey there."
+    },
+    {
+      "role": "assistant",
+      "content": "It's nice to see you. Is there something on your mind that you'd like to talk about or perhaps some help with? I'm all ears and here to assist you."
+    },
+    {
+      "role": "user",
+      "content": "What are you?"
+    },
+    {
+      "role": "assistant",
+      "content": "I am an artificial intelligence designed to provide information, answer questions, and assist with tasks to the best of my abilities. My purpose is to serve as a helpful companion and resource for users like you, offering expertise and guidance on a wide range of topics.\n\nI'm a highly advanced language model, trained on vast amounts of text data, which enables me to understand and respond to natural language inputs. I can provide explanations, suggestions, and solutions to various problems, making me a valuable tool for anyone looking for help or just seeking information.\n\nHow about you? What brings you here today?"
+    }
+  ],
+  "session_info": {
+    "start_time": "2024-11-25 15:41:36",
+    "end_time": "2024-11-25 15:46:42",
+    "total_exchanges": 3
+  }
+}
