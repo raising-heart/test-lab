@@ -1,3 +1,4 @@
+# Conda: renew_project
 import tkinter as tk
 from tkinter import scrolledtext, ttk, messagebox
 from openai import OpenAI
