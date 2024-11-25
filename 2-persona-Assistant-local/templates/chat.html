@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 2rem;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 800px;  
+            margin-bottom: 80px;  
+        }
+        .message {
+            max-width: 90%;  
+            margin: 0.75rem 0;
+            line-height: 1.5;
+            font-size: 0.95rem;  
+        }
+        .user-message {
+            margin-left: auto;
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem 1rem 0 1rem;
+        }
+        .assistant-message {
+            margin-right: auto;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem 1rem 1rem 0;
+        }
+        .input-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .input-wrapper {
+            max-width: 800px;  
+            margin: 0 auto;
+            position: relative;
+            padding: 0 1rem;  
+        }
+        #user-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-right: 3.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;  
+            line-height: 1.5;
+            resize: none;
+            height: 44px;
+            overflow-y: hidden;
+            background-color: #f9fafb;  
+        }
+        #user-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+            background-color: #ffffff;  
+        }
+        .send-button {
+            position: absolute;
+            right: 1.5rem;  
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #3b82f6;
+        }
+        .send-button:hover {
+            color: #2563eb;
+        }
+        .send-button svg {
+            width: 1.25rem;  
+            height: 1.25rem;
+        }
+        .typing-indicator {
+            display: none;
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            background-color: #f3f4f6;
+            border-radius: 1rem 1rem 1rem 0;
+            width: fit-content;
+        }
+        .typing-indicator span {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: #6b7280;
+            border-radius: 50%;
+            margin: 0 1px;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+        }
+
+        /* Add container width constraint */
+        @media (min-width: 1024px) {
+            .chat-container,
+            .input-wrapper {
+                max-width: 800px;
+            }
+        }
+        @media (max-width: 1023px) {
+            .chat-container,
+            .input-wrapper {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-messages" class="chat-container">
+        <div class="assistant-message message">
+            Hello! I'm your AI assistant. How can I help you today?
+        </div>
+    </div>
+    <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="input-container">
+        <div class="input-wrapper">
+            <form id="chat-form">
+                <textarea id="user-input" 
+                       placeholder="Message..."
+                       rows="1"></textarea>
+                <button type="submit" class="send-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const typingIndicator = document.querySelector('.typing-indicator');
+        let messageHistory = [];
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = 'block';
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function addMessage(content, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
+            messageDiv.textContent = content;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+
+            messageHistory.push({
+                role: isUser ? 'user' : 'assistant',
+                content: content
+            });
+        }
+
+        function sendMessage(e) {
+            if (e) e.preventDefault(); // Prevent form submission
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, true);
+            userInput.value = '';
+            userInput.style.height = '44px';
+
+            showTypingIndicator();
+
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    messages: messageHistory
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                if (data.status === 'success') {
+                    addMessage(data.response, false);
+                } else {
+                    addMessage('Sorry, there was an error processing your request.', false);
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                addMessage('Sorry, there was an error connecting to the server.', false);
+            });
+        }
+
+        // Auto-resize textarea
+        userInput.addEventListener('input', function() {
+            this.style.height = '44px';
+            const newHeight = Math.min(this.scrollHeight, 100);
+            this.style.height = newHeight + 'px';
+        });
+
+        // Handle form submission
+        chatForm.addEventListener('submit', sendMessage);
+
+        // Handle Enter key
+        userInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault(); // Prevent newline
+                sendMessage(); // Call sendMessage without event
+            }
+        });
+    </script>
+</body>
+</html>
