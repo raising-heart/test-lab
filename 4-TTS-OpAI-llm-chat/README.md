@@ -1,6 +1,6 @@
 # OpenAI Chat Applications with Text-to-Speech
 
-This repository contains three versions of a chat application that interacts with OpenAI's GPT and Text-to-Speech APIs. Each version builds upon the previous one, adding new features while maintaining core functionality.
+This repository contains multiple versions of chat applications that interact with OpenAI's GPT and Text-to-Speech APIs. Each version builds upon the previous one, adding new features while maintaining core functionality.
 
 ## Features
 
@@ -13,27 +13,57 @@ This repository contains three versions of a chat application that interacts wit
 
 ### Version-specific Features
 
-#### chat_app.py
-- Basic chat functionality with GPT-4o
+#### Initial Versions
+
+##### chat_app.py
+- Basic chat functionality with GPT-4
 - Text-to-Speech using Alloy voice
 - Audio responses saved in `audio_reply` folder
 
-#### chat_app2.py
+##### chat_app2.py
 - Enhanced version using Nova voice for more natural speech
 - Improved user feedback during chat
 - Maintains same core functionality as chat_app.py
 
-#### chat_app3.py
+##### chat_app3.py
 - All features from chat_app2.py
 - Added chat history logging functionality
 - Saves conversation transcripts in `chat_history` folder
 - Timestamps for all interactions
 - References to audio files in chat logs
 
+#### Enhanced Versions
+
+##### chat_app4.py & chat_app4a.py
+- Built upon assistant_1.py
+- Enhanced TTS capabilities
+- Improved error handling
+- Better session management
+- Audio responses saved in `audio_reply` folder
+
+##### chat_app5.py
+- Based on assistant_2.py
+- Professional assistant persona
+- Enhanced session management
+- Structured conversation layout
+- Improved error feedback
+
+##### chat_app6.py (Latest Version)
+- Developed from assistant_3.py
+- Modern GUI interface using tkinter
+- Features from all previous versions
+- Minimum window size of 800x600
+- Default window size of 1200x800
+- Grid-based layout for better control
+- Voice toggle functionality
+- Auto-playing audio responses
+- Expandable conversation area
+- Persistent input field and buttons
+- Chat session saving
+
 ## Prerequisites
 
 - Python 3.x
-- Conda environment: `renew_project`
 - OpenAI API key
 
 ## Installation
@@ -54,65 +84,55 @@ pip install -r requirements.txt
 OPENAI_API_KEY=your_api_key_here
 ```
 
-## Usage
-
-### Running chat_app.py (Basic Version)
-```bash
-python chat_app.py
-```
-- Uses Alloy voice for TTS
-- Saves audio in `audio_reply` folder
-
-### Running chat_app2.py (Nova Voice Version)
-```bash
-python chat_app2.py
-```
-- Uses Nova voice for more natural speech
-- Saves audio in `audio_reply` folder
-
-### Running chat_app3.py (Full Featured Version)
-```bash
-python chat_app3.py
-```
-- Uses Nova voice for speech
-- Saves audio in `audio_reply` folder
-- Creates chat logs in `chat_history` folder
-
 ## Directory Structure
 
 ```
 .
-├── chat_app.py          # Basic version with Alloy voice
+├── chat_app.py          # Basic version
 ├── chat_app2.py         # Enhanced version with Nova voice
-├── chat_app3.py         # Full version with chat history
+├── chat_app3.py         # Version with chat history
+├── chat_app4.py         # Enhanced TTS version
+├── chat_app4a.py        # Improved TTS version
+├── chat_app5.py         # Professional assistant version
+├── chat_app6.py         # GUI version with all features
 ├── requirements.txt     # Project dependencies
 ├── .env                 # API key configuration (create this)
 ├── .gitignore          # Git ignore rules
-├── audio_reply/        # Directory for saved audio responses
-└── chat_history/       # Directory for chat logs (chat_app3.py only)
+├── audio_reply/        # Directory for audio responses
+├── chat_history/       # Directory for chat logs
+└── chat_sessions/      # Directory for GUI chat sessions
 ```
 
-## Chat History Format (chat_app3.py)
+## Usage
 
-Chat history files are saved with timestamps and include:
-- Session start and end times
-- User messages with timestamps
-- Assistant responses with timestamps
+### Running chat_app6.py (Latest GUI Version)
+```bash
+python chat_app6.py
+```
+Features:
+- Modern GUI interface
+- Voice toggle button
+- Auto-playing audio responses
+- Session management
+- Chat history saving
+
+### Running Other Versions
+```bash
+python chat_app5.py  # For professional assistant version
+python chat_app4a.py # For enhanced TTS version
+python chat_app4.py  # For basic TTS version
+python chat_app3.py  # For chat history version
+python chat_app2.py  # For Nova voice version
+python chat_app.py   # For basic version
+```
+
+## Chat Session Format
+
+Chat sessions are saved as JSON files and include:
+- Session metadata (start time, settings)
+- Complete conversation history
+- Message timestamps
 - References to generated audio files
-- Clear separators between messages
-
-Example:
-```
-Chat Session Started: 2024-01-01 12:34:56
---------------------------------------------------
-
-[2024-01-01 12:34:58] User: Hello, how are you?
---------------------------------------------------
-
-[2024-01-01 12:35:00] Assistant: I'm doing well, thank you for asking!
-[2024-01-01 12:35:00] Audio saved to: audio_reply/response_20240101_123500.wav
---------------------------------------------------
-```
 
 ## Environment Variables
 
@@ -122,6 +142,8 @@ Required environment variables in `.env`:
 ## Notes
 
 - Audio files are saved in WAV format
-- Each chat session creates a new timestamped file in the chat history
-- The applications handle API errors gracefully
-- Type 'quit' or 'exit' to end the chat session
+- Chat sessions are saved as JSON files
+- The GUI version (chat_app6.py) provides the most features and best user experience
+- All versions handle API errors gracefully
+- Type 'quit' or 'exit' to end the chat session in console versions
+- Use the GUI close button to exit the GUI version
