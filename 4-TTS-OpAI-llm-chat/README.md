@@ -46,7 +46,7 @@ This repository contains multiple versions of chat applications that interact wi
 - Structured conversation layout
 - Improved error feedback
 
-##### chat_app6.py (Latest Version)
+##### chat_app6.py
 - Modern GUI interface using tkinter
 - Features from all previous versions
 - Minimum window size of 800x600
@@ -58,10 +58,23 @@ This repository contains multiple versions of chat applications that interact wi
 - Persistent input field and buttons
 - Chat session saving
 
+##### chat_app7.py (Latest Version)
+- Modern web interface using Flask
+- Dark theme for reduced eye strain
+- Responsive design that works on all screen sizes
+- Voice toggle functionality
+- Manual audio playback with play/pause controls
+- Enter to send, Shift+Enter for new line
+- Real-time typing indicators
+- Chat session saving
+- Audio responses with individual playback controls
+- Modern UI with message bubbles and clean layout
+
 ## Prerequisites
 
 - Python 3.x
 - OpenAI API key
+- Flask (for chat_app7.py)
 
 ## Installation
 
@@ -92,17 +105,32 @@ OPENAI_API_KEY=your_api_key_here
 ├── chat_app4a.py        # Improved TTS version
 ├── chat_app5.py         # Professional assistant version
 ├── chat_app6.py         # GUI version with all features
+├── chat_app7.py         # Web interface version (Latest)
 ├── requirements.txt     # Project dependencies
 ├── .env                 # API key configuration (create this)
 ├── .gitignore          # Git ignore rules
 ├── audio_reply/        # Directory for audio responses
 ├── chat_history/       # Directory for chat logs
-└── chat_sessions/      # Directory for GUI chat sessions
+├── chat_sessions/      # Directory for chat sessions
+└── templates/          # HTML templates for web interface
+    └── chat.html       # Chat interface template
 ```
 
 ## Usage
 
-### Running chat_app6.py (Latest GUI Version)
+### Running chat_app7.py (Latest Web Version)
+```bash
+python chat_app7.py
+```
+Features:
+- Modern web interface accessible via browser
+- Dark theme for comfortable viewing
+- Voice toggle with individual message playback
+- Responsive design for all devices
+- Enter to send messages
+- Real-time typing indicators
+
+### Running chat_app6.py (GUI Version)
 ```bash
 python chat_app6.py
 ```
@@ -140,7 +168,8 @@ Required environment variables in `.env`:
 
 - Audio files are saved in WAV format
 - Chat sessions are saved as JSON files
-- The GUI version (chat_app6.py) provides the most features and best user experience
+- The web version (chat_app7.py) provides the best user experience with modern features
 - All versions handle API errors gracefully
 - Type 'quit' or 'exit' to end the chat session in console versions
+- Use the browser's close button to exit the web version
 - Use the GUI close button to exit the GUI version
