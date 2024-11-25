@@ -42,6 +42,20 @@ The project contains multiple implementations of A.I.D.A., each with different f
    - Blueprint creation functionality
    - Specialized persona with unique features
 
+6. `aida6.py` - Voice-enabled version with enhanced storage
+   - All features from aida4.py
+   - Voice responses using OpenAI's text-to-speech
+   - JSON-based chat session storage
+   - Audio file management
+   - Complete conversation tracking
+   - Real-time streaming with audio playback
+
+### Storage Directories
+
+- `conversation_logs/` - Text-based conversation logs
+- `audio_reply/` - Stores generated audio response files
+- `chat_sessions/` - Contains JSON files of complete chat sessions
+
 ## Common Features Across All Versions
 
 - Integration with Ollama LLM (llama3.2:3b model)
@@ -58,16 +72,22 @@ The project contains multiple implementations of A.I.D.A., each with different f
 - Required Python packages:
   - chainlit
   - openai
+  - python-dotenv (for aida6.py)
   - logging (standard library)
   - os (standard library)
   - datetime (standard library)
+- OpenAI API key (required for aida6.py voice features)
 
 ## Getting Started
 
 1. Ensure Ollama is running locally
 2. Install required dependencies
-3. Choose the desired version of A.I.D.A. (aida.py through aida5.py)
-4. Run using Chainlit:
+3. For aida6.py, create a `.env` file with your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+4. Choose the desired version of A.I.D.A.
+5. Run using Chainlit:
    ```bash
    chainlit run [chosen_version].py
    ```
@@ -103,9 +123,41 @@ The project contains multiple implementations of A.I.D.A., each with different f
 - Blueprint creation
 - Enhanced AI capabilities
 
-## Logging
+### aida6.py (Voice-Enabled Version)
+- Text-to-speech responses
+- Audio playback in chat interface
+- Structured JSON chat history
+- Complete session management
+- Timestamp-based file organization
 
-Conversation logs are stored in the `conversation_logs` directory with timestamps for easy reference and debugging.
+## Logging and Storage
+
+### Text Logs
+- Conversation logs stored in the `conversation_logs` directory
+- Timestamps for easy reference and debugging
+
+### JSON Chat Sessions (aida6.py)
+Chat sessions are stored in JSON format with the following structure:
+```json
+{
+  "session_id": "YYYYMMDD_HHMMSS",
+  "start_time": "ISO timestamp",
+  "end_time": "ISO timestamp",
+  "messages": [
+    {
+      "role": "user/assistant",
+      "content": "message content",
+      "timestamp": "ISO timestamp",
+      "audio_file": "path to audio file (for assistant messages)"
+    }
+  ]
+}
+```
+
+### Audio Files
+- Voice responses stored in `audio_reply` directory
+- WAV format audio files
+- Timestamp-based naming for easy tracking
 
 ## Contributing
 
@@ -117,5 +169,4 @@ Feel free to contribute to this project by:
 
 ## Note
 
-This project demonstrates different approaches to implementing an AI assistant, each with its own unique features and capabilities. Choose the version that best suits your needs or use them as a reference for building your own AI assistant implementation.
-
+This project demonstrates different approaches to implementing an AI assistant, each with its own unique features and capabilities. Choose the version that best suits your needs or use them as a reference for building your own AI assistant implementation. The latest addition (aida6.py) extends the functionality with voice responses and structured data storage.
