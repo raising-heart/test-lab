@@ -1,3 +1,4 @@
+# Conda: renew_project
 from openai import OpenAI
 import json
 from datetime import datetime
