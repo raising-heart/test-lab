@@ -1,3 +1,4 @@
+# Conda: renew_project
 import os
 from openai import OpenAI
 import chainlit as cl
