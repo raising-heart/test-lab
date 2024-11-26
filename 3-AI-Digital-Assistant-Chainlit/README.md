@@ -35,7 +35,7 @@ The project contains multiple implementations of A.I.D.A., each with different f
    - Focus on learning and knowledge sharing
    - Interactive welcome message
 
-5. `aida5.py` - Advanced system management
+5. `aida5.py` - Advanced system management (Roleplaying)
    - System management capabilities
    - Enhanced AI capabilities
    - Research and analysis features
