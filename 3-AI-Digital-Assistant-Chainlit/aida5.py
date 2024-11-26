@@ -9,7 +9,7 @@ client = OpenAI(
     api_key="not_required"
 )
 
-# Define AIDA's personality and capabilities
+# Define AIDA's personality and capabilities (Roleplaying)
 ASSISTANT_PERSONA = """I am Advance Intelligent Digital Assistant also known as AIDA.
 1/  I manages all systems, facilitates and rnd, highly intelligent.
 2/  Able to self improve or enhance.
